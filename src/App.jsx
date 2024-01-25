@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+// import {ListItem} from "./ListItem"
 
 const App = () => {
   const [item, setItem] = useState("");
@@ -17,15 +18,26 @@ const App = () => {
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default behavior (e.g., form submission)
+      handleAdd();
+    }
+  };
+  
+  
+  
   return (
     <>
       <h1>To-Do List</h1>
       <div className="input">
-        <input value={item} onChange={handleChange}></input>
+        <input value={item} onChange={handleChange} onKeyPress={handleEnter}></input>
+
         <button onClick={handleAdd}>Add</button>
       </div>
-      {items.map((todo, index) => (
-        <p key={index}>{todo}</p>
+
+      {items.map((toDo, index) => (
+        <p key={index}>{toDo}</p>
       ))}
     </>
   );
