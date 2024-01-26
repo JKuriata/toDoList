@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-// import {ListItem} from "./ListItem"
+import {ListItem} from "./ListItem"
 
 const App = () => {
   const [item, setItem] = useState("");
@@ -25,6 +25,9 @@ const App = () => {
     }
   };
   
+  const removeItem = (itemToRemove) => {
+    setItems((prevItems) => prevItems.filter((item) => item !== itemToRemove));
+  };
   
   
   return (
@@ -37,7 +40,7 @@ const App = () => {
       </div>
 
       {items.map((toDo, index) => (
-        <p key={index}>{toDo}</p>
+        <ListItem key={index} toDo={toDo} onRemove={removeItem} />
       ))}
     </>
   );
